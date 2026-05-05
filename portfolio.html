@@ -1,0 +1,1059 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Portfolio — Geomatic Scientist</title>
+  <link href="https://fonts.googleapis.com/css2?family=Space+Mono:ital,wght@0,400;0,700;1,400&family=Syne:wght@400;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg: #050d0f;
+      --surface: #0a1a1f;
+      --surface2: #0f2229;
+      --border: #1a3a44;
+      --accent: #00e5c8;
+      --accent2: #00b4ff;
+      --accent3: #7fff6e;
+      --text: #cde8ec;
+      --text-muted: #5a8a92;
+      --grid-color: rgba(0, 229, 200, 0.04);
+      --glow: 0 0 20px rgba(0, 229, 200, 0.15);
+    }
+
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: 'Syne', sans-serif;
+      min-height: 100vh;
+      overflow-x: hidden;
+    }
+
+    /* GRID BACKGROUND */
+    body::before {
+      content: '';
+      position: fixed;
+      inset: 0;
+      background-image:
+        linear-gradient(var(--grid-color) 1px, transparent 1px),
+        linear-gradient(90deg, var(--grid-color) 1px, transparent 1px);
+      background-size: 40px 40px;
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    /* SCANLINE OVERLAY */
+    body::after {
+      content: '';
+      position: fixed;
+      inset: 0;
+      background: repeating-linear-gradient(
+        0deg,
+        transparent,
+        transparent 2px,
+        rgba(0,0,0,0.03) 2px,
+        rgba(0,0,0,0.03) 4px
+      );
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    /* ANIMATED RADAR CIRCLE */
+    .radar-bg {
+      position: fixed;
+      top: -200px;
+      right: -200px;
+      width: 700px;
+      height: 700px;
+      border-radius: 50%;
+      border: 1px solid rgba(0,229,200,0.06);
+      pointer-events: none;
+      z-index: 0;
+    }
+    .radar-bg::before, .radar-bg::after {
+      content: '';
+      position: absolute;
+      inset: 80px;
+      border-radius: 50%;
+      border: 1px solid rgba(0,229,200,0.05);
+    }
+    .radar-bg::after { inset: 160px; }
+    .radar-sweep {
+      position: fixed;
+      top: -200px;
+      right: -200px;
+      width: 700px;
+      height: 700px;
+      pointer-events: none;
+      z-index: 0;
+      animation: sweep 6s linear infinite;
+      transform-origin: center;
+    }
+    .radar-sweep::before {
+      content: '';
+      position: absolute;
+      top: 50%; left: 50%;
+      width: 50%; height: 50%;
+      transform-origin: 0 0;
+      background: conic-gradient(from 0deg, transparent 340deg, rgba(0,229,200,0.12) 360deg);
+      border-radius: 0 100% 0 0;
+    }
+    @keyframes sweep { to { transform: rotate(360deg); } }
+
+    /* LAYOUT */
+    .container {
+      position: relative;
+      z-index: 1;
+      display: grid;
+      grid-template-columns: 300px 1fr;
+      min-height: 100vh;
+      max-width: 1100px;
+      margin: 0 auto;
+      gap: 0;
+      padding: 30px 20px;
+    }
+
+    /* SIDEBAR */
+    .sidebar {
+      position: sticky;
+      top: 30px;
+      height: fit-content;
+      display: flex;
+      flex-direction: column;
+      gap: 0;
+      padding-right: 30px;
+    }
+
+    .profile-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 28px 24px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .profile-card::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 3px;
+      background: linear-gradient(90deg, var(--accent), var(--accent2));
+    }
+
+    /* AVATAR */
+    .avatar-wrap {
+      position: relative;
+      width: 90px;
+      height: 90px;
+      margin: 0 auto 20px;
+    }
+    .avatar-ring {
+      position: absolute;
+      inset: -6px;
+      border-radius: 50%;
+      border: 2px solid transparent;
+      background: linear-gradient(135deg, var(--accent), var(--accent2)) border-box;
+      -webkit-mask: linear-gradient(#fff 0 0) padding-box, linear-gradient(#fff 0 0);
+      -webkit-mask-composite: destination-out;
+      mask-composite: exclude;
+      animation: ring-pulse 3s ease-in-out infinite;
+    }
+    @keyframes ring-pulse {
+      0%, 100% { opacity: 1; transform: scale(1); }
+      50% { opacity: 0.6; transform: scale(1.05); }
+    }
+    .avatar {
+      width: 90px;
+      height: 90px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, #0a2a35, #0f3d4a);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 2.2rem;
+      overflow: hidden;
+    }
+    .avatar svg { width: 50px; height: 50px; fill: var(--accent); opacity: 0.9; }
+
+    .name {
+      font-size: 1.3rem;
+      font-weight: 800;
+      text-align: center;
+      color: #fff;
+      letter-spacing: -0.5px;
+      line-height: 1.2;
+    }
+    .title-badge {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 6px;
+      margin: 8px auto 0;
+      width: fit-content;
+      background: rgba(0,229,200,0.08);
+      border: 1px solid rgba(0,229,200,0.2);
+      border-radius: 20px;
+      padding: 4px 12px;
+      font-family: 'Space Mono', monospace;
+      font-size: 0.65rem;
+      color: var(--accent);
+      letter-spacing: 1px;
+      text-transform: uppercase;
+    }
+    .title-badge::before {
+      content: '';
+      width: 6px; height: 6px;
+      border-radius: 50%;
+      background: var(--accent3);
+      box-shadow: 0 0 6px var(--accent3);
+      animation: blink 1.5s ease-in-out infinite;
+    }
+    @keyframes blink { 0%, 100% { opacity: 1; } 50% { opacity: 0.3; } }
+
+    /* CONTACTS */
+    .contacts-section {
+      margin-top: 20px;
+      padding-top: 20px;
+      border-top: 1px solid var(--border);
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+    }
+    .contact-row {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+    .contact-icon {
+      width: 34px; height: 34px;
+      border-radius: 8px;
+      background: rgba(0,229,200,0.07);
+      border: 1px solid rgba(0,229,200,0.15);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+    .contact-icon svg { width: 16px; height: 16px; stroke: var(--accent); fill: none; stroke-width: 1.8; }
+    .contact-label {
+      font-family: 'Space Mono', monospace;
+      font-size: 0.58rem;
+      color: var(--text-muted);
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
+    .contact-val {
+      font-size: 0.78rem;
+      color: var(--text);
+      font-weight: 600;
+    }
+    .contact-val a { color: var(--accent2); text-decoration: none; }
+
+    /* SKILLS BAR SECTION */
+    .skills-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 22px 24px;
+      margin-top: 16px;
+    }
+    .card-label {
+      font-family: 'Space Mono', monospace;
+      font-size: 0.6rem;
+      color: var(--text-muted);
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      margin-bottom: 16px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .card-label::after {
+      content: '';
+      flex: 1;
+      height: 1px;
+      background: var(--border);
+    }
+    .skill-item { margin-bottom: 12px; }
+    .skill-top {
+      display: flex;
+      justify-content: space-between;
+      margin-bottom: 5px;
+    }
+    .skill-name { font-size: 0.78rem; color: var(--text); font-weight: 600; }
+    .skill-pct {
+      font-family: 'Space Mono', monospace;
+      font-size: 0.65rem;
+      color: var(--accent);
+    }
+    .skill-bar {
+      height: 4px;
+      background: var(--border);
+      border-radius: 4px;
+      overflow: hidden;
+    }
+    .skill-fill {
+      height: 100%;
+      border-radius: 4px;
+      background: linear-gradient(90deg, var(--accent), var(--accent2));
+      animation: grow 1.2s ease-out forwards;
+      transform-origin: left;
+    }
+    @keyframes grow { from { transform: scaleX(0); } to { transform: scaleX(1); } }
+
+    /* SOCIAL */
+    .social-row {
+      display: flex;
+      gap: 10px;
+      margin-top: 16px;
+      padding-top: 16px;
+      border-top: 1px solid var(--border);
+    }
+    .soc-btn {
+      flex: 1;
+      height: 34px;
+      border-radius: 8px;
+      background: rgba(255,255,255,0.04);
+      border: 1px solid var(--border);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      transition: all 0.2s;
+      text-decoration: none;
+    }
+    .soc-btn:hover {
+      background: rgba(0,229,200,0.1);
+      border-color: var(--accent);
+      box-shadow: var(--glow);
+    }
+    .soc-btn svg { width: 16px; height: 16px; fill: var(--text-muted); transition: fill 0.2s; }
+    .soc-btn:hover svg { fill: var(--accent); }
+
+    /* MAIN CONTENT */
+    .main-content {
+      padding-left: 10px;
+    }
+
+    /* NAV */
+    .nav {
+      display: flex;
+      gap: 4px;
+      margin-bottom: 28px;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 6px;
+      width: fit-content;
+    }
+    .nav-btn {
+      background: none;
+      border: none;
+      color: var(--text-muted);
+      font-family: 'Space Mono', monospace;
+      font-size: 0.65rem;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      padding: 8px 16px;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: all 0.2s;
+      white-space: nowrap;
+    }
+    .nav-btn:hover { color: var(--text); background: rgba(255,255,255,0.05); }
+    .nav-btn.active {
+      color: var(--bg);
+      background: linear-gradient(135deg, var(--accent), var(--accent2));
+      font-weight: 700;
+    }
+
+    /* PAGE SECTIONS */
+    .page { display: none; animation: fadeUp 0.4s ease forwards; }
+    .page.active { display: block; }
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(12px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .section-title {
+      font-size: 1.8rem;
+      font-weight: 800;
+      color: #fff;
+      letter-spacing: -1px;
+      margin-bottom: 6px;
+      line-height: 1;
+    }
+    .section-title span { color: var(--accent); }
+    .section-sub {
+      font-family: 'Space Mono', monospace;
+      font-size: 0.65rem;
+      color: var(--text-muted);
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      margin-bottom: 28px;
+    }
+
+    /* ABOUT */
+    .about-text {
+      font-size: 0.92rem;
+      line-height: 1.8;
+      color: var(--text);
+      opacity: 0.85;
+      max-width: 560px;
+      margin-bottom: 30px;
+    }
+
+    /* SERVICES GRID */
+    .services-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 14px;
+      margin-bottom: 32px;
+    }
+    .service-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 20px;
+      transition: all 0.25s;
+      position: relative;
+      overflow: hidden;
+    }
+    .service-card::after {
+      content: '';
+      position: absolute;
+      bottom: 0; left: 0; right: 0;
+      height: 2px;
+      background: linear-gradient(90deg, var(--accent), var(--accent2));
+      transform: scaleX(0);
+      transition: transform 0.3s;
+    }
+    .service-card:hover { border-color: rgba(0,229,200,0.3); box-shadow: var(--glow); }
+    .service-card:hover::after { transform: scaleX(1); }
+    .svc-icon {
+      width: 40px; height: 40px;
+      border-radius: 10px;
+      background: rgba(0,229,200,0.08);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 14px;
+      font-size: 1.2rem;
+    }
+    .svc-title {
+      font-size: 0.9rem;
+      font-weight: 700;
+      color: #fff;
+      margin-bottom: 6px;
+    }
+    .svc-desc {
+      font-size: 0.76rem;
+      color: var(--text-muted);
+      line-height: 1.6;
+    }
+
+    /* STATS ROW */
+    .stats-row {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 14px;
+      margin-bottom: 32px;
+    }
+    .stat-card {
+      background: var(--surface2);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 18px;
+      text-align: center;
+    }
+    .stat-num {
+      font-size: 2rem;
+      font-weight: 800;
+      color: var(--accent);
+      font-family: 'Space Mono', monospace;
+      line-height: 1;
+    }
+    .stat-label {
+      font-size: 0.68rem;
+      color: var(--text-muted);
+      margin-top: 4px;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
+
+    /* RESUME */
+    .timeline { display: flex; flex-direction: column; gap: 0; margin-bottom: 28px; }
+    .tl-item {
+      display: grid;
+      grid-template-columns: 120px 1fr;
+      gap: 20px;
+      position: relative;
+      padding-bottom: 24px;
+    }
+    .tl-item:not(:last-child)::before {
+      content: '';
+      position: absolute;
+      left: 119px;
+      top: 8px; bottom: 0;
+      width: 1px;
+      background: var(--border);
+    }
+    .tl-year {
+      font-family: 'Space Mono', monospace;
+      font-size: 0.7rem;
+      color: var(--accent);
+      padding-top: 3px;
+      text-align: right;
+    }
+    .tl-dot {
+      position: absolute;
+      left: 112px;
+      top: 6px;
+      width: 14px; height: 14px;
+      border-radius: 50%;
+      background: var(--bg);
+      border: 2px solid var(--accent);
+      box-shadow: 0 0 8px rgba(0,229,200,0.4);
+    }
+    .tl-content { padding-left: 8px; }
+    .tl-role { font-weight: 700; color: #fff; margin-bottom: 3px; }
+    .tl-place { font-size: 0.75rem; color: var(--accent2); margin-bottom: 6px; }
+    .tl-desc { font-size: 0.78rem; color: var(--text-muted); line-height: 1.6; }
+
+    /* PORTFOLIO */
+    .filter-row {
+      display: flex;
+      gap: 8px;
+      margin-bottom: 20px;
+      flex-wrap: wrap;
+    }
+    .filter-btn {
+      background: none;
+      border: 1px solid var(--border);
+      color: var(--text-muted);
+      font-family: 'Space Mono', monospace;
+      font-size: 0.62rem;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      padding: 6px 14px;
+      border-radius: 20px;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+    .filter-btn:hover, .filter-btn.active {
+      background: rgba(0,229,200,0.1);
+      border-color: var(--accent);
+      color: var(--accent);
+    }
+    .portfolio-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+    }
+    .proj-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      overflow: hidden;
+      transition: all 0.25s;
+      cursor: pointer;
+    }
+    .proj-card:hover { border-color: rgba(0,229,200,0.3); transform: translateY(-3px); box-shadow: var(--glow); }
+    .proj-thumb {
+      height: 140px;
+      position: relative;
+      overflow: hidden;
+    }
+    .proj-thumb-bg {
+      width: 100%; height: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 3rem;
+      transition: transform 0.3s;
+    }
+    .proj-card:hover .proj-thumb-bg { transform: scale(1.06); }
+    .proj-thumb-bg.gis { background: linear-gradient(135deg, #0a2a35, #062020); }
+    .proj-thumb-bg.dash { background: linear-gradient(135deg, #0d1f35, #091528); }
+    .proj-thumb-bg.data { background: linear-gradient(135deg, #1a1a0d, #121205); }
+    .proj-thumb-bg.hot { background: linear-gradient(135deg, #2a0d0d, #1a0505); }
+    .proj-tag {
+      position: absolute;
+      top: 10px; right: 10px;
+      background: rgba(0,0,0,0.7);
+      border: 1px solid var(--border);
+      color: var(--accent);
+      font-family: 'Space Mono', monospace;
+      font-size: 0.55rem;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      padding: 3px 8px;
+      border-radius: 4px;
+    }
+    .proj-info { padding: 16px; }
+    .proj-name { font-weight: 700; color: #fff; margin-bottom: 4px; }
+    .proj-desc { font-size: 0.75rem; color: var(--text-muted); line-height: 1.5; }
+
+    /* CONTACT */
+    .contact-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 20px;
+    }
+    .map-box {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      overflow: hidden;
+      height: 280px;
+      position: relative;
+    }
+    .map-box iframe { width: 100%; height: 100%; border: none; filter: invert(0.9) hue-rotate(160deg) saturate(0.5); }
+    .form-box {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 24px;
+    }
+    .form-group { margin-bottom: 14px; }
+    .form-label {
+      display: block;
+      font-family: 'Space Mono', monospace;
+      font-size: 0.6rem;
+      color: var(--text-muted);
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      margin-bottom: 6px;
+    }
+    .form-input {
+      width: 100%;
+      background: var(--bg);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      color: var(--text);
+      font-family: 'Space Mono', monospace;
+      font-size: 0.78rem;
+      padding: 10px 14px;
+      outline: none;
+      transition: border-color 0.2s;
+    }
+    .form-input:focus { border-color: var(--accent); }
+    textarea.form-input { resize: vertical; min-height: 90px; }
+    .submit-btn {
+      width: 100%;
+      background: linear-gradient(135deg, var(--accent), var(--accent2));
+      border: none;
+      border-radius: 8px;
+      color: var(--bg);
+      font-family: 'Space Mono', monospace;
+      font-size: 0.75rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      padding: 12px;
+      cursor: pointer;
+      transition: opacity 0.2s;
+    }
+    .submit-btn:hover { opacity: 0.85; }
+
+    /* COORDINATE DISPLAY */
+    .coord-bar {
+      display: flex;
+      gap: 16px;
+      margin-bottom: 8px;
+    }
+    .coord-chip {
+      font-family: 'Space Mono', monospace;
+      font-size: 0.6rem;
+      color: var(--text-muted);
+      background: rgba(0,229,200,0.05);
+      border: 1px solid rgba(0,229,200,0.1);
+      border-radius: 4px;
+      padding: 3px 8px;
+    }
+    .coord-chip span { color: var(--accent); }
+
+    /* CORNER DECORATIONS */
+    .corner-tl, .corner-br {
+      position: absolute;
+      width: 14px; height: 14px;
+      border-color: rgba(0,229,200,0.3);
+      border-style: solid;
+    }
+    .corner-tl { top: 10px; left: 10px; border-width: 2px 0 0 2px; }
+    .corner-br { bottom: 10px; right: 10px; border-width: 0 2px 2px 0; }
+
+    @media (max-width: 768px) {
+      .container { grid-template-columns: 1fr; padding: 16px; }
+      .sidebar { position: static; padding-right: 0; margin-bottom: 20px; }
+      .services-grid, .portfolio-grid, .contact-grid { grid-template-columns: 1fr; }
+      .stats-row { grid-template-columns: 1fr 1fr; }
+      .nav { flex-wrap: wrap; }
+    }
+  </style>
+</head>
+<body>
+
+<div class="radar-bg"></div>
+<div class="radar-sweep"></div>
+
+<div class="container">
+
+  <!-- SIDEBAR -->
+  <aside class="sidebar">
+
+    <div class="profile-card" style="position:relative;">
+      <div class="corner-tl"></div>
+      <div class="corner-br"></div>
+
+      <div class="avatar-wrap">
+        <div class="avatar-ring"></div>
+        <div class="avatar">
+          <!-- GIS/Map SVG Icon -->
+          <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+            <path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/>
+          </svg>
+        </div>
+      </div>
+
+      <h1 class="name">Ahmad Luqman<br>Bin Rosli</h1>
+      <div class="title-badge">Geomatic Scientist</div>
+
+      <div class="contacts-section">
+        <div class="contact-row">
+          <div class="contact-icon">
+            <svg viewBox="0 0 24 24"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+          </div>
+          <div>
+            <div class="contact-label">Email</div>
+            <div class="contact-val"><a href="mailto:luqman@email.com">luqman@email.com</a></div>
+          </div>
+        </div>
+        <div class="contact-row">
+          <div class="contact-icon">
+            <svg viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 9.81 19.79 19.79 0 01.06 1.18 2 2 0 012 0h3a2 2 0 012 1.72 12.84 12.84 0 00.7 2.81 2 2 0 01-.45 2.11L6.91 7.09a16 16 0 006 6l.61-.74a2 2 0 012.11-.45 12.84 12.84 0 002.81.7A2 2 0 0122 16.92z"/></svg>
+          </div>
+          <div>
+            <div class="contact-label">Phone</div>
+            <div class="contact-val">+60 11-XXXX XXXX</div>
+          </div>
+        </div>
+        <div class="contact-row">
+          <div class="contact-icon">
+            <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+          </div>
+          <div>
+            <div class="contact-label">Graduating</div>
+            <div class="contact-val">June 2026</div>
+          </div>
+        </div>
+        <div class="contact-row">
+          <div class="contact-icon">
+            <svg viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>
+          </div>
+          <div>
+            <div class="contact-label">Location</div>
+            <div class="contact-val">Malaysia 🇲🇾</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="social-row">
+        <a href="#" class="soc-btn" title="GitHub">
+          <svg viewBox="0 0 24 24"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 00-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0020 4.77 5.07 5.07 0 0019.91 1S18.73.65 16 2.48a13.38 13.38 0 00-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 005 4.77a5.44 5.44 0 00-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 009 18.13V22"/></svg>
+        </a>
+        <a href="#" class="soc-btn" title="LinkedIn">
+          <svg viewBox="0 0 24 24"><path d="M16 8a6 6 0 016 6v7h-4v-7a2 2 0 00-2-2 2 2 0 00-2 2v7h-4v-7a6 6 0 016-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg>
+        </a>
+        <a href="#" class="soc-btn" title="Fiverr">
+          <svg viewBox="0 0 24 24" fill="currentColor"><text y="18" font-size="14" font-family="monospace" fill="currentColor">F</text></svg>
+        </a>
+      </div>
+    </div>
+
+    <!-- SKILLS CARD -->
+    <div class="skills-card">
+      <div class="card-label">Technical Skills</div>
+
+      <div class="skill-item">
+        <div class="skill-top">
+          <span class="skill-name">QGIS / ArcGIS</span>
+          <span class="skill-pct">85%</span>
+        </div>
+        <div class="skill-bar"><div class="skill-fill" style="width:85%"></div></div>
+      </div>
+      <div class="skill-item">
+        <div class="skill-top">
+          <span class="skill-name">SQL & Database</span>
+          <span class="skill-pct">72%</span>
+        </div>
+        <div class="skill-bar"><div class="skill-fill" style="width:72%"></div></div>
+      </div>
+      <div class="skill-item">
+        <div class="skill-top">
+          <span class="skill-name">Python / Streamlit</span>
+          <span class="skill-pct">68%</span>
+        </div>
+        <div class="skill-bar"><div class="skill-fill" style="width:68%"></div></div>
+      </div>
+      <div class="skill-item">
+        <div class="skill-top">
+          <span class="skill-name">Data Dashboard</span>
+          <span class="skill-pct">75%</span>
+        </div>
+        <div class="skill-bar"><div class="skill-fill" style="width:75%"></div></div>
+      </div>
+      <div class="skill-item" style="margin-bottom:0">
+        <div class="skill-top">
+          <span class="skill-name">Remote Sensing</span>
+          <span class="skill-pct">80%</span>
+        </div>
+        <div class="skill-bar"><div class="skill-fill" style="width:80%"></div></div>
+      </div>
+    </div>
+
+  </aside>
+
+  <!-- MAIN -->
+  <div class="main-content">
+
+    <nav class="nav">
+      <button class="nav-btn active" data-page="about">About</button>
+      <button class="nav-btn" data-page="resume">Resume</button>
+      <button class="nav-btn" data-page="portfolio">Portfolio</button>
+      <button class="nav-btn" data-page="contact">Contact</button>
+    </nav>
+
+    <!-- ABOUT -->
+    <section class="page active" id="about">
+      <div class="coord-bar">
+        <div class="coord-chip">LAT <span>3.1390°N</span></div>
+        <div class="coord-chip">LNG <span>101.6869°E</span></div>
+        <div class="coord-chip">PROJ <span>WGS84</span></div>
+      </div>
+      <h2 class="section-title">About <span>Me</span></h2>
+      <p class="section-sub">// Geomatic Science · Data · GIS · Dashboard</p>
+      <p class="about-text">
+        Final-year Geomatic Science student with hands-on experience building GIS-based systems, hotspot analysis, and spatial data dashboards. I turn raw geospatial data into actionable insights — combining spatial analysis, SQL databases, and interactive visualizations into real-world solutions that clients can use.
+      </p>
+      <p class="about-text">
+        Currently building portfolio projects and accepting freelance work in GIS mapping, data dashboards, and spatial analysis. Available for remote collaboration and Fiverr engagements.
+      </p>
+
+      <h3 style="font-size:0.8rem;color:var(--text-muted);font-family:'Space Mono',monospace;text-transform:uppercase;letter-spacing:2px;margin-bottom:16px;">// What I Do</h3>
+      <div class="services-grid">
+        <div class="service-card">
+          <div class="svc-icon">🗺️</div>
+          <div class="svc-title">GIS Mapping</div>
+          <div class="svc-desc">Custom QGIS/ArcGIS maps, spatial analysis, hotspot detection, and critical zone mapping.</div>
+        </div>
+        <div class="service-card">
+          <div class="svc-icon">📊</div>
+          <div class="svc-title">Data Dashboard</div>
+          <div class="svc-desc">Interactive dashboards with Streamlit or web-based tools. Visualize your data in real time.</div>
+        </div>
+        <div class="service-card">
+          <div class="svc-icon">🛢️</div>
+          <div class="svc-title">SQL & Database</div>
+          <div class="svc-desc">Database design, queries, joins and integration with spatial and tabular datasets.</div>
+        </div>
+        <div class="service-card">
+          <div class="svc-icon">📡</div>
+          <div class="svc-title">Remote Sensing</div>
+          <div class="svc-desc">Satellite imagery processing, land use classification, and change detection analysis.</div>
+        </div>
+      </div>
+
+      <div class="stats-row">
+        <div class="stat-card">
+          <div class="stat-num">3+</div>
+          <div class="stat-label">GIS Projects</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-num">2</div>
+          <div class="stat-label">Dashboards Built</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-num">Jun'26</div>
+          <div class="stat-label">Available Full-Time</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- RESUME -->
+    <section class="page" id="resume">
+      <h2 class="section-title">My <span>Resume</span></h2>
+      <p class="section-sub">// Education & Experience</p>
+
+      <h3 style="font-size:0.8rem;color:var(--text-muted);font-family:'Space Mono',monospace;text-transform:uppercase;letter-spacing:2px;margin-bottom:16px;">// Education</h3>
+      <div class="timeline">
+        <div class="tl-item">
+          <div class="tl-year">2022–2026</div>
+          <div class="tl-dot"></div>
+          <div class="tl-content">
+            <div class="tl-role">B.Sc. Geomatic Science</div>
+            <div class="tl-place">Universiti Teknologi MARA (UiTM)</div>
+            <div class="tl-desc">Specializing in GIS, Remote Sensing, Adjustment Computation, and Spatial Data Analysis. Final Year Project: GIS-based hotspot & critical zone mapping system.</div>
+          </div>
+        </div>
+        <div class="tl-item">
+          <div class="tl-year">2019–2022</div>
+          <div class="tl-dot"></div>
+          <div class="tl-content">
+            <div class="tl-role">Science Stream — SPM</div>
+            <div class="tl-place">Sekolah Menengah Malaysia</div>
+            <div class="tl-desc">Foundation in sciences with emphasis on mathematics and physics.</div>
+          </div>
+        </div>
+      </div>
+
+      <h3 style="font-size:0.8rem;color:var(--text-muted);font-family:'Space Mono',monospace;text-transform:uppercase;letter-spacing:2px;margin-bottom:16px;">// Projects & Experience</h3>
+      <div class="timeline">
+        <div class="tl-item">
+          <div class="tl-year">2025–2026</div>
+          <div class="tl-dot"></div>
+          <div class="tl-content">
+            <div class="tl-role">Final Year Project — GIS Hotspot Analysis</div>
+            <div class="tl-place">UiTM Research Project</div>
+            <div class="tl-desc">Built a full GIS pipeline: data collection → QGIS processing → hotspot/critical zone mapping → graph comparison dashboard. Delivered as functional GIS maps + visualizations.</div>
+          </div>
+        </div>
+        <div class="tl-item">
+          <div class="tl-year">2025</div>
+          <div class="tl-dot"></div>
+          <div class="tl-content">
+            <div class="tl-role">Freelance GIS Analyst (In Progress)</div>
+            <div class="tl-place">Fiverr / Remote</div>
+            <div class="tl-desc">Building service offerings for custom GIS maps, spatial data dashboards, and SQL database integration for small businesses and research institutions.</div>
+          </div>
+        </div>
+        <div class="tl-item">
+          <div class="tl-year">2024</div>
+          <div class="tl-dot"></div>
+          <div class="tl-content">
+            <div class="tl-role">Adjustment Computation — Lab Work</div>
+            <div class="tl-place">UiTM Coursework</div>
+            <div class="tl-desc">Applied least squares adjustment, traverse computation and coordinate transformation using real survey data and Python scripts.</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- PORTFOLIO -->
+    <section class="page" id="portfolio">
+      <h2 class="section-title">My <span>Portfolio</span></h2>
+      <p class="section-sub">// Real Projects · GIS · Data · Dashboard</p>
+
+      <div class="filter-row">
+        <button class="filter-btn active">All</button>
+        <button class="filter-btn">GIS</button>
+        <button class="filter-btn">Dashboard</button>
+        <button class="filter-btn">Data</button>
+      </div>
+
+      <div class="portfolio-grid">
+        <div class="proj-card">
+          <div class="proj-thumb">
+            <div class="proj-thumb-bg gis">🗺️</div>
+            <div class="proj-tag">GIS</div>
+          </div>
+          <div class="proj-info">
+            <div class="proj-name">Hotspot Detection Map</div>
+            <div class="proj-desc">QGIS-based spatial hotspot analysis with Kernel Density Estimation (KDE). Identifies critical zones from incident data. Built for FYP.</div>
+          </div>
+        </div>
+        <div class="proj-card">
+          <div class="proj-thumb">
+            <div class="proj-thumb-bg dash">📊</div>
+            <div class="proj-tag">Dashboard</div>
+          </div>
+          <div class="proj-info">
+            <div class="proj-name">Spatial Data Dashboard</div>
+            <div class="proj-desc">Interactive Streamlit dashboard connecting to SQL database. Shows trend graphs, comparison charts, and dynamic filtering by region and time.</div>
+          </div>
+        </div>
+        <div class="proj-card">
+          <div class="proj-thumb">
+            <div class="proj-thumb-bg data">🛢️</div>
+            <div class="proj-tag">Data</div>
+          </div>
+          <div class="proj-info">
+            <div class="proj-name">GIS SQL Database System</div>
+            <div class="proj-desc">PostgreSQL + PostGIS database design for spatial data storage. Includes spatial queries, joins and export to QGIS layers.</div>
+          </div>
+        </div>
+        <div class="proj-card">
+          <div class="proj-thumb">
+            <div class="proj-thumb-bg hot">🔥</div>
+            <div class="proj-tag">GIS</div>
+          </div>
+          <div class="proj-info">
+            <div class="proj-name">Critical Zone Mapping</div>
+            <div class="proj-desc">Multi-layer GIS analysis overlaying environmental, infrastructure, and risk data to produce actionable critical zone classification maps.</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- CONTACT -->
+    <section class="page" id="contact">
+      <h2 class="section-title">Get In <span>Touch</span></h2>
+      <p class="section-sub">// Available for Freelance · Remote Work · Collaboration</p>
+
+      <div class="contact-grid">
+        <div class="map-box">
+          <iframe
+            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d127481.45843803!2d101.6167!3d3.1478!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x31cc362abd08e6b3%3A0x23a80a34a27b86aa!2sKuala%20Lumpur!5e0!3m2!1sen!2smy!4v1234567890"
+            loading="lazy" allowfullscreen referrerpolicy="no-referrer-when-downgrade">
+          </iframe>
+        </div>
+
+        <div class="form-box">
+          <div class="form-group">
+            <label class="form-label">Full Name</label>
+            <input type="text" class="form-input" placeholder="Your name">
+          </div>
+          <div class="form-group">
+            <label class="form-label">Email Address</label>
+            <input type="email" class="form-input" placeholder="your@email.com">
+          </div>
+          <div class="form-group">
+            <label class="form-label">Message</label>
+            <textarea class="form-input" placeholder="Tell me about your project..."></textarea>
+          </div>
+          <button class="submit-btn">Send Message →</button>
+        </div>
+      </div>
+    </section>
+
+  </div>
+</div>
+
+<script>
+  // NAV
+  const navBtns = document.querySelectorAll('.nav-btn');
+  const pages = document.querySelectorAll('.page');
+  navBtns.forEach(btn => {
+    btn.addEventListener('click', () => {
+      navBtns.forEach(b => b.classList.remove('active'));
+      pages.forEach(p => p.classList.remove('active'));
+      btn.classList.add('active');
+      document.getElementById(btn.dataset.page).classList.add('active');
+    });
+  });
+
+  // FILTER
+  const filterBtns = document.querySelectorAll('.filter-btn');
+  filterBtns.forEach(btn => {
+    btn.addEventListener('click', () => {
+      filterBtns.forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+    });
+  });
+</script>
+</body>
+</html>
