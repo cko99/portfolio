@@ -1,0 +1,694 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Luqman Latif — Geomatic Engineer & GIS Analyst specializing in spatial analysis, dashboards, and geospatial intelligence.">
+  <title>Luqman Latif — Geomatic Engineer & GIS Analyst</title>
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Space+Mono:ital,wght@0,400;0,700;1,400&family=Syne:wght@400;600;700;800&display=swap" rel="stylesheet">
+
+  <!-- Stylesheet -->
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <!-- ============================================================
+       NAVBAR
+       ============================================================ -->
+  <nav class="navbar" role="navigation" aria-label="Main navigation">
+    <div class="nav-logo">LL.</div>
+
+    <div class="nav-links" role="tablist">
+      <button class="nav-btn active" data-page="home"     role="tab" aria-selected="true">Home</button>
+      <button class="nav-btn"        data-page="about"    role="tab" aria-selected="false">About</button>
+      <button class="nav-btn"        data-page="projects" role="tab" aria-selected="false">Projects</button>
+      <button class="nav-btn"        data-page="skills"   role="tab" aria-selected="false">Skills</button>
+      <button class="nav-btn"        data-page="tools"    role="tab" aria-selected="false">Tools</button>
+      <button class="nav-btn"        data-page="contact"  role="tab" aria-selected="false">Contact</button>
+    </div>
+
+    <div class="nav-meta" aria-label="Location coordinates">
+      <span class="nav-coord">LAT <b>3.1390°N</b></span>
+      <span class="nav-coord">LNG <b>101.6869°E</b></span>
+      <div class="nav-dot" aria-hidden="true"></div>
+    </div>
+  </nav>
+
+
+  <!-- ============================================================
+       MAIN LAYOUT
+       ============================================================ -->
+  <div class="layout">
+
+    <!-- ==================== LEFT SIDEBAR ==================== -->
+    <aside class="sidebar-left" aria-label="Profile sidebar">
+      <div class="profile">
+        <!-- Avatar -->
+        <div class="avatar">
+          <img src="images/profile/luqman-profile.jpg"
+               alt="Luqman Latif"
+               onerror="this.style.display='none'; this.nextElementSibling.style.display='flex'">
+          <svg viewBox="0 0 24 24" style="display:none">
+            <path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/>
+          </svg>
+        </div>
+
+        <h1 class="p-name">Luqman Latif</h1>
+        <p class="p-role">Geomatic Engineer<br>& GIS Analyst</p>
+        <p class="p-bio">Specializing in GIS-based systems, spatial analysis, and geospatial dashboards. Transforming complex spatial data into actionable intelligence.</p>
+        <a href="assets/cv/luqman-latif-cv.pdf" class="p-cta" download>Download CV →</a>
+
+        <div class="sep"></div>
+
+        <!-- Stats -->
+        <div class="stats" aria-label="Portfolio statistics">
+          <div class="stat-row">
+            <div class="stat-ico" aria-hidden="true">📁</div>
+            <div>
+              <div class="stat-num">15+</div>
+              <div class="stat-lbl">Projects Completed</div>
+            </div>
+          </div>
+          <div class="stat-row">
+            <div class="stat-ico" aria-hidden="true">🛠️</div>
+            <div>
+              <div class="stat-num">8+</div>
+              <div class="stat-lbl">Tools & Technologies</div>
+            </div>
+          </div>
+          <div class="stat-row">
+            <div class="stat-ico" aria-hidden="true">⭐</div>
+            <div>
+              <div class="stat-num">100%</div>
+              <div class="stat-lbl">Client Satisfaction</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="sep"></div>
+
+        <!-- Contact info -->
+        <div class="contacts" aria-label="Contact details">
+          <div class="ct-row">
+            <div class="ct-ico" aria-hidden="true">
+              <svg viewBox="0 0 24 24"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+            </div>
+            <div class="ct-val"><a href="mailto:luqman@email.com">luqman@email.com</a></div>
+          </div>
+          <div class="ct-row">
+            <div class="ct-ico" aria-hidden="true">
+              <svg viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 9.81 19.79 19.79 0 01.06 1.18 2 2 0 012 0h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L6.91 7.09a16 16 0 006 6l.61-.74a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/></svg>
+            </div>
+            <div class="ct-val">+60 11-XXXX XXXX</div>
+          </div>
+          <div class="ct-row">
+            <div class="ct-ico" aria-hidden="true">
+              <svg viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>
+            </div>
+            <div class="ct-val">Malaysia 🇲🇾</div>
+          </div>
+        </div>
+
+        <!-- Social links -->
+        <div class="socials" aria-label="Social media links">
+          <a href="https://github.com/luqmanlatif" class="soc" title="GitHub" target="_blank" rel="noopener">
+            <svg viewBox="0 0 24 24"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 00-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0020 4.77 5.07 5.07 0 0019.91 1S18.73.65 16 2.48a13.38 13.38 0 00-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 005 4.77a5.44 5.44 0 00-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 009 18.13V22"/></svg>
+          </a>
+          <a href="https://linkedin.com/in/luqmanlatif" class="soc" title="LinkedIn" target="_blank" rel="noopener">
+            <svg viewBox="0 0 24 24"><path d="M16 8a6 6 0 016 6v7h-4v-7a2 2 0 00-2-2 2 2 0 00-2 2v7h-4v-7a6 6 0 016-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg>
+          </a>
+          <a href="https://fiverr.com/luqmanlatif" class="soc" title="Fiverr" target="_blank" rel="noopener">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><text y="18" font-size="14" font-family="monospace" stroke="none" fill="var(--text-muted)">F</text></svg>
+          </a>
+        </div>
+      </div>
+    </aside>
+
+
+    <!-- ==================== CENTER CONTENT ==================== -->
+    <main class="center" role="main">
+
+      <!-- ===================================================
+           PAGE: HOME
+           =================================================== -->
+      <div class="page active" id="page-home" role="tabpanel">
+
+        <!-- Hero -->
+        <section class="section" aria-label="Hero">
+          <div class="hero-grid">
+            <div class="hero-text">
+              <div class="hero-tag">Geospatial Intelligence</div>
+              <h2 class="hero-h">GIS Solutions for <em>Real-World Impact</em></h2>
+              <p class="hero-p">Delivering end-to-end geospatial solutions — from data collection and spatial analysis to interactive dashboards and publication-ready maps. Every project is built to solve real problems with precision and clarity.</p>
+              <div class="badges" aria-label="Technology badges">
+                <span class="badge">QGIS</span>
+                <span class="badge">ArcGIS</span>
+                <span class="badge">Python</span>
+                <span class="badge">PostGIS</span>
+                <span class="badge">Streamlit</span>
+                <span class="badge">SQL</span>
+                <span class="badge orange">GEE</span>
+                <span class="badge orange">AutoCAD</span>
+              </div>
+            </div>
+
+            <!-- Hero Map Visualization -->
+            <div class="hero-map" aria-label="GIS heatmap visualization">
+              <img class="hero-map-img"
+                   src="images/ui/hero-heatmap.jpg"
+                   alt="GIS Heatmap visualization">
+
+              <!-- SVG hotspot overlay -->
+              <svg class="hm-overlay" viewBox="0 0 800 500" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
+                <defs>
+                  <radialGradient id="r1" cx="50%" cy="50%" r="50%">
+                    <stop offset="0%"   stop-color="#e07a5f" stop-opacity="0.4"/>
+                    <stop offset="40%"  stop-color="#dda15e" stop-opacity="0.2"/>
+                    <stop offset="100%" stop-color="transparent" stop-opacity="0"/>
+                  </radialGradient>
+                  <radialGradient id="r2" cx="50%" cy="50%" r="50%">
+                    <stop offset="0%"   stop-color="#dda15e" stop-opacity="0.3"/>
+                    <stop offset="50%"  stop-color="#a3b18a" stop-opacity="0.12"/>
+                    <stop offset="100%" stop-color="transparent" stop-opacity="0"/>
+                  </radialGradient>
+                  <radialGradient id="r3" cx="50%" cy="50%" r="50%">
+                    <stop offset="0%"   stop-color="#e07a5f" stop-opacity="0.25"/>
+                    <stop offset="60%"  stop-color="#dda15e" stop-opacity="0.08"/>
+                    <stop offset="100%" stop-color="transparent" stop-opacity="0"/>
+                  </radialGradient>
+                </defs>
+                <ellipse cx="310" cy="195" rx="130" ry="110" fill="url(#r1)"/>
+                <ellipse cx="530" cy="275" rx="95"  ry="85"  fill="url(#r2)"/>
+                <ellipse cx="190" cy="345" rx="75"  ry="65"  fill="url(#r3)"/>
+                <ellipse cx="610" cy="145" rx="55"  ry="50"  fill="url(#r2)"/>
+                <ellipse cx="420" cy="375" rx="85"  ry="55"  fill="url(#r3)"/>
+                <circle cx="295" cy="185" r="3.5" fill="#e07a5f" opacity="0.75"/>
+                <circle cx="335" cy="215" r="2.5" fill="#dda15e" opacity="0.65"/>
+                <circle cx="275" cy="205" r="2.5" fill="#e07a5f" opacity="0.55"/>
+                <circle cx="520" cy="265" r="3.5" fill="#dda15e" opacity="0.75"/>
+                <circle cx="550" cy="295" r="2.5" fill="#a3b18a" opacity="0.65"/>
+                <circle cx="185" cy="335" r="2.5" fill="#e07a5f" opacity="0.65"/>
+                <circle cx="215" cy="355" r="2.5" fill="#dda15e" opacity="0.55"/>
+                <circle cx="600" cy="140" r="2.5" fill="#dda15e" opacity="0.65"/>
+                <circle cx="415" cy="365" r="2.5" fill="#e07a5f" opacity="0.55"/>
+                <circle cx="445" cy="385" r="2.5" fill="#dda15e" opacity="0.65"/>
+              </svg>
+
+              <!-- Legend -->
+              <div class="hm-legend">
+                <div class="hm-legend-t">Hotspot Intensity</div>
+                <div class="hm-legend-bar"></div>
+                <div class="hm-legend-labels">
+                  <span>Low</span><span>Medium</span><span>High</span>
+                </div>
+              </div>
+
+              <!-- Layer controls -->
+              <div class="hm-layers" aria-label="Map layer controls">
+                <div class="hm-layers-t">Layers</div>
+                <div class="hm-layer"><div class="hm-chk on"></div>Heatmap</div>
+                <div class="hm-layer"><div class="hm-chk on"></div>Points</div>
+                <div class="hm-layer"><div class="hm-chk"></div>Boundaries</div>
+                <div class="hm-layer"><div class="hm-chk"></div>Labels</div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- Key Outputs -->
+        <section class="section" aria-label="Key outputs and visualizations">
+          <div class="sec-head">
+            <div class="sec-ico" aria-hidden="true">📊</div>
+            <h2 class="sec-title">Key Outputs & <em>Visualizations</em></h2>
+          </div>
+          <div class="outputs-grid">
+            <div class="card out-card">
+              <img class="out-img" src="images/outputs/spatial-analysis.jpg" alt="Spatial Analysis Maps">
+              <div class="out-body">
+                <div class="out-name">Spatial Analysis Maps</div>
+                <div class="out-desc">Multi-layer overlay with classified zones</div>
+              </div>
+            </div>
+            <div class="card out-card">
+              <img class="out-img" src="images/outputs/hotspot-density.jpg" alt="Hotspot Density Maps">
+              <div class="out-body">
+                <div class="out-name">Hotspot Density Maps</div>
+                <div class="out-desc">KDE-based density estimation</div>
+              </div>
+            </div>
+            <div class="card out-card">
+              <img class="out-img" src="images/outputs/critical-zone.jpg" alt="Critical Zone Maps">
+              <div class="out-body">
+                <div class="out-name">Critical Zone Maps</div>
+                <div class="out-desc">Risk classification scoring</div>
+              </div>
+            </div>
+            <div class="card out-card">
+              <img class="out-img" src="images/outputs/dashboard.jpg" alt="Interactive Dashboards">
+              <div class="out-body">
+                <div class="out-name">Interactive Dashboards</div>
+                <div class="out-desc">Real-time filtering & charts</div>
+              </div>
+            </div>
+            <div class="card out-card">
+              <img class="out-img" src="images/outputs/terrain-3d.jpg" alt="3D Terrain Models">
+              <div class="out-body">
+                <div class="out-name">3D Terrain Models</div>
+                <div class="out-desc">Elevation & visualization</div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- Projects Highlight -->
+        <section class="section" aria-label="Featured projects">
+          <div class="sec-head">
+            <div class="sec-ico orange" aria-hidden="true">💼</div>
+            <h2 class="sec-title">Projects <em>Highlight</em></h2>
+          </div>
+          <div class="proj-grid">
+            <article class="card proj-card">
+              <div class="proj-thumb">
+                <img src="images/projects/fire-hotspot.jpg" alt="Fire Hotspot Analysis project thumbnail">
+                <div class="proj-overlay" aria-hidden="true"></div>
+                <div class="proj-tag">GIS</div>
+              </div>
+              <div class="proj-body">
+                <h3 class="proj-name">Fire Hotspot Analysis</h3>
+                <p class="proj-desc">QGIS-based spatial hotspot analysis using Kernel Density Estimation to identify high-risk fire zones from historical data.</p>
+                <div class="proj-tech">
+                  <span>QGIS</span><span>KDE</span><span>Spatial Analysis</span>
+                </div>
+              </div>
+            </article>
+            <article class="card proj-card">
+              <div class="proj-thumb">
+                <img src="images/projects/crime-dashboard.jpg" alt="Crime Analytics Dashboard project thumbnail">
+                <div class="proj-overlay" aria-hidden="true"></div>
+                <div class="proj-tag">Dashboard</div>
+              </div>
+              <div class="proj-body">
+                <h3 class="proj-name">Crime Analytics Dashboard</h3>
+                <p class="proj-desc">Interactive Streamlit dashboard with SQL backend showing trend graphs, heatmaps, and dynamic filtering by region.</p>
+                <div class="proj-tech">
+                  <span>Streamlit</span><span>SQL</span><span>Python</span>
+                </div>
+              </div>
+            </article>
+            <article class="card proj-card">
+              <div class="proj-thumb">
+                <img src="images/projects/spatial-database.jpg" alt="GIS Spatial Database project thumbnail">
+                <div class="proj-overlay" aria-hidden="true"></div>
+                <div class="proj-tag">Data</div>
+              </div>
+              <div class="proj-body">
+                <h3 class="proj-name">GIS Spatial Database</h3>
+                <p class="proj-desc">PostgreSQL + PostGIS spatial database for storing, querying, and exporting geospatial datasets to QGIS layers.</p>
+                <div class="proj-tech">
+                  <span>PostGIS</span><span>PostgreSQL</span><span>SQL</span>
+                </div>
+              </div>
+            </article>
+            <article class="card proj-card">
+              <div class="proj-thumb">
+                <img src="images/projects/critical-zone.jpg" alt="Critical Zone Mapping project thumbnail">
+                <div class="proj-overlay" aria-hidden="true"></div>
+                <div class="proj-tag">GIS</div>
+              </div>
+              <div class="proj-body">
+                <h3 class="proj-name">Critical Zone Mapping</h3>
+                <p class="proj-desc">Multi-layer GIS analysis overlaying environmental, infrastructure, and risk data for actionable zone classification.</p>
+                <div class="proj-tech">
+                  <span>QGIS</span><span>Overlay</span><span>Weighted Score</span>
+                </div>
+              </div>
+            </article>
+          </div>
+        </section>
+      </div><!-- /page-home -->
+
+
+      <!-- ===================================================
+           PAGE: ABOUT
+           =================================================== -->
+      <div class="page" id="page-about" role="tabpanel">
+
+        <section class="section" aria-label="About me">
+          <div class="sec-head">
+            <div class="sec-ico" aria-hidden="true">👤</div>
+            <h2 class="sec-title">About <em>Me</em></h2>
+          </div>
+          <p class="about-intro">
+            I'm <strong>Luqman Latif</strong>, a final-year Geomatic Science student at UiTM with a deep focus on
+            <strong>geographic information systems</strong>, spatial analysis, and data visualization.
+            I build real GIS systems — not student exercises — turning raw geospatial data into actionable intelligence
+            that decision-makers can actually use. My work sits at the intersection of
+            <strong>spatial science</strong> and <strong>software engineering</strong>, combining QGIS/ArcGIS workflows
+            with Python automation, SQL databases, and interactive dashboards.
+          </p>
+
+          <div class="about-services">
+            <div class="about-svc">
+              <div class="about-svc-ico" aria-hidden="true">🗺️</div>
+              <div class="about-svc-t">GIS Mapping</div>
+              <div class="about-svc-d">Custom spatial maps, multi-layer analysis, hotspot detection, and critical zone classification.</div>
+            </div>
+            <div class="about-svc">
+              <div class="about-svc-ico" aria-hidden="true">🛢️</div>
+              <div class="about-svc-t">Spatial Database</div>
+              <div class="about-svc-d">PostGIS/PostgreSQL design, spatial queries, joins, and seamless QGIS integration.</div>
+            </div>
+            <div class="about-svc">
+              <div class="about-svc-ico" aria-hidden="true">📊</div>
+              <div class="about-svc-t">Dashboard Development</div>
+              <div class="about-svc-d">Streamlit-based interactive dashboards with real-time filtering, charts, and spatial views.</div>
+            </div>
+            <div class="about-svc">
+              <div class="about-svc-ico" aria-hidden="true">📡</div>
+              <div class="about-svc-t">Remote Sensing</div>
+              <div class="about-svc-d">Satellite imagery processing, land use classification, and change detection with GEE.</div>
+            </div>
+          </div>
+        </section>
+
+        <section class="section" aria-label="Workflow pipeline">
+          <div class="sec-head">
+            <div class="sec-ico orange" aria-hidden="true">⚙️</div>
+            <h2 class="sec-title">Workflow <em>Pipeline</em></h2>
+          </div>
+          <div class="pipeline">
+            <div class="pipe-step"><div class="pipe-num">01</div><div class="pipe-name">Data Collection</div><div class="pipe-desc">Survey, satellite, open data</div></div>
+            <div class="pipe-step"><div class="pipe-num">02</div><div class="pipe-name">Spatial Processing</div><div class="pipe-desc">Cleaning, projection, georeference</div></div>
+            <div class="pipe-step"><div class="pipe-num">03</div><div class="pipe-name">Analysis</div><div class="pipe-desc">KDE, overlay, spatial stats</div></div>
+            <div class="pipe-step"><div class="pipe-num">04</div><div class="pipe-name">Visualization</div><div class="pipe-desc">Maps, charts, 3D models</div></div>
+            <div class="pipe-step"><div class="pipe-num">05</div><div class="pipe-name">Deployment</div><div class="pipe-desc">Dashboard, report, delivery</div></div>
+          </div>
+        </section>
+      </div><!-- /page-about -->
+
+
+      <!-- ===================================================
+           PAGE: PROJECTS
+           =================================================== -->
+      <div class="page" id="page-projects" role="tabpanel">
+
+        <section class="section" aria-label="All projects">
+          <div class="sec-head">
+            <div class="sec-ico orange" aria-hidden="true">💼</div>
+            <h2 class="sec-title">All <em>Projects</em></h2>
+          </div>
+          <p class="sec-desc">A comprehensive view of all GIS and data projects — from spatial analysis to interactive dashboards and database systems.</p>
+          <div class="proj-grid">
+            <article class="card proj-card">
+              <div class="proj-thumb">
+                <img src="images/projects/fire-hotspot.jpg" alt="Fire Hotspot Analysis">
+                <div class="proj-overlay" aria-hidden="true"></div>
+                <div class="proj-tag">GIS</div>
+              </div>
+              <div class="proj-body">
+                <h3 class="proj-name">Fire Hotspot Analysis</h3>
+                <p class="proj-desc">QGIS-based spatial hotspot analysis using Kernel Density Estimation to identify high-risk fire zones from historical data.</p>
+                <div class="proj-tech"><span>QGIS</span><span>KDE</span><span>Spatial Analysis</span></div>
+              </div>
+            </article>
+            <article class="card proj-card">
+              <div class="proj-thumb">
+                <img src="images/projects/crime-dashboard.jpg" alt="Crime Analytics Dashboard">
+                <div class="proj-overlay" aria-hidden="true"></div>
+                <div class="proj-tag">Dashboard</div>
+              </div>
+              <div class="proj-body">
+                <h3 class="proj-name">Crime Analytics Dashboard</h3>
+                <p class="proj-desc">Interactive Streamlit dashboard with SQL backend showing trend graphs, heatmaps, and dynamic filtering by region.</p>
+                <div class="proj-tech"><span>Streamlit</span><span>SQL</span><span>Python</span></div>
+              </div>
+            </article>
+            <article class="card proj-card">
+              <div class="proj-thumb">
+                <img src="images/projects/spatial-database.jpg" alt="GIS Spatial Database">
+                <div class="proj-overlay" aria-hidden="true"></div>
+                <div class="proj-tag">Data</div>
+              </div>
+              <div class="proj-body">
+                <h3 class="proj-name">GIS Spatial Database</h3>
+                <p class="proj-desc">PostgreSQL + PostGIS spatial database for storing, querying, and exporting geospatial datasets to QGIS layers.</p>
+                <div class="proj-tech"><span>PostGIS</span><span>PostgreSQL</span><span>SQL</span></div>
+              </div>
+            </article>
+            <article class="card proj-card">
+              <div class="proj-thumb">
+                <img src="images/projects/critical-zone.jpg" alt="Critical Zone Mapping">
+                <div class="proj-overlay" aria-hidden="true"></div>
+                <div class="proj-tag">GIS</div>
+              </div>
+              <div class="proj-body">
+                <h3 class="proj-name">Critical Zone Mapping</h3>
+                <p class="proj-desc">Multi-layer GIS analysis overlaying environmental, infrastructure, and risk data for actionable zone classification.</p>
+                <div class="proj-tech"><span>QGIS</span><span>Overlay</span><span>Weighted Score</span></div>
+              </div>
+            </article>
+            <article class="card proj-card">
+              <div class="proj-thumb">
+                <img src="images/projects/weather-transport.jpg" alt="Weather Impact Transport Dashboard">
+                <div class="proj-overlay" aria-hidden="true"></div>
+                <div class="proj-tag">Dashboard</div>
+              </div>
+              <div class="proj-body">
+                <h3 class="proj-name">Weather Impact Transport Dashboard</h3>
+                <p class="proj-desc">Streamlit dashboard correlating weather patterns with transport disruption data, featuring time-series analysis and route risk mapping.</p>
+                <div class="proj-tech"><span>Streamlit</span><span>Python</span><span>Pandas</span></div>
+              </div>
+            </article>
+          </div>
+        </section>
+      </div><!-- /page-projects -->
+
+
+      <!-- ===================================================
+           PAGE: SKILLS
+           =================================================== -->
+      <div class="page" id="page-skills" role="tabpanel">
+
+        <section class="section" aria-label="Technical skills">
+          <div class="sec-head">
+            <div class="sec-ico" aria-hidden="true">📈</div>
+            <h2 class="sec-title">Technical <em>Skills</em></h2>
+          </div>
+          <p class="sec-desc">Comprehensive proficiency across GIS platforms, programming, databases, and spatial analysis methodologies.</p>
+          <div class="skills-grid">
+            <div class="skill-card">
+              <div class="skill-card-h"><span>🗺️</span> GIS Platforms</div>
+              <div class="sk-item"><div class="sk-top"><span class="sk-name">QGIS</span><span class="sk-pct">90%</span></div><div class="sk-track"><div class="sk-fill" data-w="90"></div></div></div>
+              <div class="sk-item"><div class="sk-top"><span class="sk-name">ArcGIS Pro</span><span class="sk-pct">80%</span></div><div class="sk-track"><div class="sk-fill" data-w="80"></div></div></div>
+              <div class="sk-item"><div class="sk-top"><span class="sk-name">ArcMap</span><span class="sk-pct">75%</span></div><div class="sk-track"><div class="sk-fill" data-w="75"></div></div></div>
+            </div>
+            <div class="skill-card">
+              <div class="skill-card-h"><span>🐍</span> Programming</div>
+              <div class="sk-item"><div class="sk-top"><span class="sk-name">Python</span><span class="sk-pct">72%</span></div><div class="sk-track"><div class="sk-fill" data-w="72"></div></div></div>
+              <div class="sk-item"><div class="sk-top"><span class="sk-name">SQL</span><span class="sk-pct">74%</span></div><div class="sk-track"><div class="sk-fill" data-w="74"></div></div></div>
+              <div class="sk-item"><div class="sk-top"><span class="sk-name">JavaScript</span><span class="sk-pct">40%</span></div><div class="sk-track"><div class="sk-fill" data-w="40"></div></div></div>
+            </div>
+            <div class="skill-card">
+              <div class="skill-card-h"><span>🛢️</span> Databases</div>
+              <div class="sk-item"><div class="sk-top"><span class="sk-name">PostgreSQL / PostGIS</span><span class="sk-pct">70%</span></div><div class="sk-track"><div class="sk-fill" data-w="70"></div></div></div>
+              <div class="sk-item"><div class="sk-top"><span class="sk-name">GeoPackage</span><span class="sk-pct">85%</span></div><div class="sk-track"><div class="sk-fill" data-w="85"></div></div></div>
+              <div class="sk-item"><div class="sk-top"><span class="sk-name">Shapefile / CSV</span><span class="sk-pct">95%</span></div><div class="sk-track"><div class="sk-fill" data-w="95"></div></div></div>
+            </div>
+            <div class="skill-card">
+              <div class="skill-card-h"><span>📡</span> Spatial Analysis</div>
+              <div class="sk-item"><div class="sk-top"><span class="sk-name">Kernel Density (KDE)</span><span class="sk-pct">88%</span></div><div class="sk-track"><div class="sk-fill" data-w="88"></div></div></div>
+              <div class="sk-item"><div class="sk-top"><span class="sk-name">Overlay Analysis</span><span class="sk-pct">82%</span></div><div class="sk-track"><div class="sk-fill" data-w="82"></div></div></div>
+              <div class="sk-item"><div class="sk-top"><span class="sk-name">Remote Sensing</span><span class="sk-pct">78%</span></div><div class="sk-track"><div class="sk-fill" data-w="78"></div></div></div>
+            </div>
+          </div>
+        </section>
+
+        <section class="section" aria-label="Certificates">
+          <div class="sec-head">
+            <div class="sec-ico orange" aria-hidden="true">📜</div>
+            <h2 class="sec-title"><em>Certificates</em></h2>
+          </div>
+          <div class="cert-grid">
+            <div class="cert-card">
+              <img class="cert-img" src="images/certificates/python-cert.jpg" alt="Python for Data Science certificate">
+              <div class="cert-body"><div class="cert-title">Python for Data Science</div><div class="cert-platform">Coursera</div></div>
+            </div>
+            <div class="cert-card">
+              <img class="cert-img" src="images/certificates/sql-cert.jpg" alt="Advanced SQL for Analytics certificate">
+              <div class="cert-body"><div class="cert-title">Advanced SQL for Analytics</div><div class="cert-platform">Udemy</div></div>
+            </div>
+            <div class="cert-card">
+              <img class="cert-img" src="images/certificates/gis-cert.jpg" alt="GIS Fundamentals certificate">
+              <div class="cert-body"><div class="cert-title">GIS Fundamentals</div><div class="cert-platform">Esri</div></div>
+            </div>
+            <div class="cert-card">
+              <img class="cert-img" src="images/certificates/dataviz-cert.jpg" alt="Data Visualization with Python certificate">
+              <div class="cert-body"><div class="cert-title">Data Visualization with Python</div><div class="cert-platform">DataCamp</div></div>
+            </div>
+            <div class="cert-card">
+              <img class="cert-img" src="images/certificates/postgis-cert.jpg" alt="PostGIS for Spatial Data certificate">
+              <div class="cert-body"><div class="cert-title">PostGIS for Spatial Data</div><div class="cert-platform">Udemy</div></div>
+            </div>
+            <div class="cert-card">
+              <img class="cert-img" src="images/certificates/remote-sensing-cert.jpg" alt="Remote Sensing with GEE certificate">
+              <div class="cert-body"><div class="cert-title">Remote Sensing with GEE</div><div class="cert-platform">Coursera</div></div>
+            </div>
+          </div>
+        </section>
+      </div><!-- /page-skills -->
+
+
+      <!-- ===================================================
+           PAGE: TOOLS
+           =================================================== -->
+      <div class="page" id="page-tools" role="tabpanel">
+
+        <section class="section" aria-label="Tools and software">
+          <div class="sec-head">
+            <div class="sec-ico" aria-hidden="true">🛠️</div>
+            <h2 class="sec-title">Tools & <em>Software</em></h2>
+          </div>
+          <p class="sec-desc">The complete software stack used across all projects — from desktop GIS platforms to cloud-based geospatial engines.</p>
+          <div class="tools-page-grid">
+            <div class="tp-card">
+              <div class="tp-logo"><img src="images/logos/qgis.png" alt="QGIS logo" onerror="this.parentElement.textContent='🗺️'"></div>
+              <div class="tp-name">QGIS</div><div class="tp-cat">GIS Platform</div>
+            </div>
+            <div class="tp-card">
+              <div class="tp-logo"><img src="images/logos/arcgis.png" alt="ArcGIS logo" onerror="this.parentElement.textContent='🌐'"></div>
+              <div class="tp-name">ArcGIS</div><div class="tp-cat">Enterprise GIS</div>
+            </div>
+            <div class="tp-card">
+              <div class="tp-logo"><img src="images/logos/postgis.png" alt="PostGIS logo" onerror="this.parentElement.textContent='🐘'"></div>
+              <div class="tp-name">PostGIS</div><div class="tp-cat">Spatial Database</div>
+            </div>
+            <div class="tp-card">
+              <div class="tp-logo"><img src="images/logos/postgresql.png" alt="PostgreSQL logo" onerror="this.parentElement.textContent='🗃️'"></div>
+              <div class="tp-name">PostgreSQL</div><div class="tp-cat">Relational DB</div>
+            </div>
+            <div class="tp-card">
+              <div class="tp-logo"><img src="images/logos/python.png" alt="Python logo" onerror="this.parentElement.textContent='🐍'"></div>
+              <div class="tp-name">Python</div><div class="tp-cat">Programming</div>
+            </div>
+            <div class="tp-card">
+              <div class="tp-logo"><img src="images/logos/streamlit.png" alt="Streamlit logo" onerror="this.parentElement.textContent='📊'"></div>
+              <div class="tp-name">Streamlit</div><div class="tp-cat">Dashboard</div>
+            </div>
+            <div class="tp-card">
+              <div class="tp-logo"><img src="images/logos/autocad.png" alt="AutoCAD logo" onerror="this.parentElement.textContent='📐'"></div>
+              <div class="tp-name">AutoCAD</div><div class="tp-cat">CAD Design</div>
+            </div>
+            <div class="tp-card">
+              <div class="tp-logo"><img src="images/logos/gee.png" alt="Google Earth Engine logo" onerror="this.parentElement.textContent='🛰️'"></div>
+              <div class="tp-name">Google Earth Engine</div><div class="tp-cat">Cloud RS</div>
+            </div>
+          </div>
+        </section>
+      </div><!-- /page-tools -->
+
+
+      <!-- ===================================================
+           PAGE: CONTACT
+           =================================================== -->
+      <div class="page" id="page-contact" role="tabpanel">
+
+        <section class="section" aria-label="Contact">
+          <div class="sec-head">
+            <div class="sec-ico" aria-hidden="true">✉️</div>
+            <h2 class="sec-title">Get In <em>Touch</em></h2>
+          </div>
+          <p class="sec-desc">Available for freelance GIS work, remote collaboration, and project consultations. Reach out to discuss your geospatial needs.</p>
+
+          <div class="contact-grid">
+            <!-- Map embed -->
+            <div class="contact-map" aria-label="Location map — Kuala Lumpur, Malaysia">
+              <iframe
+                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d127481.45843803!2d101.6167!3d3.1478!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x31cc362abd08e6b3%3A0x23a80a34a27b86aa!2sKuala%20Lumpur!5e0!3m2!1sen!2smy!4v1234567890"
+                loading="lazy"
+                allowfullscreen
+                referrerpolicy="no-referrer-when-downgrade"
+                title="Kuala Lumpur location map">
+              </iframe>
+            </div>
+
+            <!-- Contact form -->
+            <div class="contact-form">
+              <div class="cf-group">
+                <label class="cf-label" for="cf-name">Full Name</label>
+                <input type="text" id="cf-name" class="cf-input" placeholder="Your name" autocomplete="name">
+              </div>
+              <div class="cf-group">
+                <label class="cf-label" for="cf-email">Email Address</label>
+                <input type="email" id="cf-email" class="cf-input" placeholder="your@email.com" autocomplete="email">
+              </div>
+              <div class="cf-group">
+                <label class="cf-label" for="cf-subject">Subject</label>
+                <input type="text" id="cf-subject" class="cf-input" placeholder="Project type or inquiry">
+              </div>
+              <div class="cf-group">
+                <label class="cf-label" for="cf-message">Message</label>
+                <textarea id="cf-message" class="cf-input" placeholder="Tell me about your project..."></textarea>
+              </div>
+              <button class="cf-submit" id="cfSubmit" type="button">Send Message →</button>
+
+              <div class="contact-links">
+                <a href="mailto:luqman@email.com" class="cl-link">
+                  <svg viewBox="0 0 24 24"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+                  Email
+                </a>
+                <a href="https://linkedin.com/in/luqmanlatif" class="cl-link" target="_blank" rel="noopener">
+                  <svg viewBox="0 0 24 24"><path d="M16 8a6 6 0 016 6v7h-4v-7a2 2 0 00-2-2 2 2 0 00-2 2v7h-4v-7a6 6 0 016-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg>
+                  LinkedIn
+                </a>
+                <a href="https://github.com/luqmanlatif" class="cl-link" target="_blank" rel="noopener">
+                  <svg viewBox="0 0 24 24"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 00-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0020 4.77 5.07 5.07 0 0019.91 1S18.73.65 16 2.48a13.38 13.38 0 00-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 005 4.77a5.44 5.44 0 00-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 009 18.13V22"/></svg>
+                  GitHub
+                </a>
+                <a href="https://fiverr.com/luqmanlatif" class="cl-link" target="_blank" rel="noopener">
+                  <svg viewBox="0 0 24 24" fill="none"><text y="18" font-size="14" font-family="monospace" fill="currentColor">F</text></svg>
+                  Fiverr
+                </a>
+              </div>
+            </div>
+          </div>
+        </section>
+      </div><!-- /page-contact -->
+
+    </main>
+
+
+    <!-- ==================== RIGHT SIDEBAR ==================== -->
+    <aside class="sidebar-right" aria-label="Tools and proficiency sidebar">
+      <div class="tools-list">
+        <div class="tools-heading">Tools & Technologies</div>
+        <div class="tl-row"><div class="tl-ico" aria-hidden="true">🗺️</div><div><div class="tl-name">QGIS</div><div class="tl-type">GIS Platform</div></div></div>
+        <div class="tl-row"><div class="tl-ico" aria-hidden="true">🌐</div><div><div class="tl-name">ArcGIS</div><div class="tl-type">Enterprise GIS</div></div></div>
+        <div class="tl-row"><div class="tl-ico" aria-hidden="true">🐘</div><div><div class="tl-name">PostGIS</div><div class="tl-type">Spatial Database</div></div></div>
+        <div class="tl-row"><div class="tl-ico" aria-hidden="true">🐍</div><div><div class="tl-name">Python</div><div class="tl-type">Programming</div></div></div>
+        <div class="tl-row"><div class="tl-ico" aria-hidden="true">📊</div><div><div class="tl-name">Streamlit</div><div class="tl-type">Dashboard</div></div></div>
+        <div class="tl-row"><div class="tl-ico" aria-hidden="true">🛢️</div><div><div class="tl-name">SQL</div><div class="tl-type">Database Query</div></div></div>
+        <div class="tl-row"><div class="tl-ico" aria-hidden="true">📐</div><div><div class="tl-name">AutoCAD</div><div class="tl-type">CAD Design</div></div></div>
+        <div class="tl-row"><div class="tl-ico" aria-hidden="true">🛰️</div><div><div class="tl-name">GEE</div><div class="tl-type">Earth Engine</div></div></div>
+      </div>
+
+      <div class="prof-mini">
+        <div class="tools-heading">Proficiency</div>
+        <div class="pm-item"><div class="pm-top"><span class="pm-name">QGIS / ArcGIS</span><span class="pm-pct">85%</span></div><div class="pm-track"><div class="pm-fill" data-w="85"></div></div></div>
+        <div class="pm-item"><div class="pm-top"><span class="pm-name">SQL & Database</span><span class="pm-pct">72%</span></div><div class="pm-track"><div class="pm-fill" data-w="72"></div></div></div>
+        <div class="pm-item"><div class="pm-top"><span class="pm-name">Python</span><span class="pm-pct">68%</span></div><div class="pm-track"><div class="pm-fill" data-w="68"></div></div></div>
+        <div class="pm-item"><div class="pm-top"><span class="pm-name">Dashboard</span><span class="pm-pct">75%</span></div><div class="pm-track"><div class="pm-fill" data-w="75"></div></div></div>
+        <div class="pm-item"><div class="pm-top"><span class="pm-name">Remote Sensing</span><span class="pm-pct">80%</span></div><div class="pm-track"><div class="pm-fill" data-w="80"></div></div></div>
+      </div>
+    </aside>
+
+  </div><!-- /layout -->
+
+
+  <!-- Script -->
+  <script src="script.js"></script>
+</body>
+</html>
