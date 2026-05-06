@@ -6,7 +6,7 @@ Personal portfolio showcasing GIS, spatial analysis, and data dashboard projects
 
 ## 🌐 Live Website
 
-👉 https://username.github.io/portfolio
+👉 [https://username.github.io/portfolio](https://cko99.github.io/Luqman_website/)
 
 ---
 
